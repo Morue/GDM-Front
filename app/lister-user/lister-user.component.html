@@ -1,0 +1,36 @@
+<h2>Liste des utilisateurs</h2>
+<button type="button" class="btn btn-success" (click)=newUser()>Créer un utilisateur</button>
+<p>
+  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+</p>
+
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Nom</th>
+      <th class="align-middle" scope="col">Prenom</th>
+      <th class="align-middle" scope="col">Roles</th>
+      <th class="align-middle" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center" *ngFor="let user of listeUsers; index as i">
+      <th class="align-middle" scope="row">{{ i + 1 }}</th>
+      <td class="align-middle" (click)=update(user)>
+        {{ user.firstName }}
+      </td>
+      <td class="align-middle">{{ user.lastName }}</td>
+      <td class="align-middle">{{ user.role }}</td>
+      <td class="align-middle">
+        <button type="button" class="btn-liste btn btn-modifier"   (click)="update(user)">Modifier</button>
+        <button type="button" class="btn-liste btn btn-danger" (click)="delete(user)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+

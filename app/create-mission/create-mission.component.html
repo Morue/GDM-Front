@@ -1,0 +1,46 @@
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h2 class="text-center">Création de mission</h2>
+            <p *ngIf="alert">
+        <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+      </p>
+      <form (ngSubmit)="submit()" #monForm="ngForm">
+
+        <div class="form-group">
+          <label for="kind">Nature :</label>
+          <select class="form-control" placeholder="Choisissez une nature" [(ngModel)]="mission.kind" name="kind" #kind="ngModel" required>
+            <option *ngFor="let kind of kinds" [ngValue]="kind">{{kind.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="formGroupExampleInput startDate">Date de début :</label>
+          <input type="date" class="form-control" [(ngModel)]="mission.startDate" name="startDate" #startDate="ngModel">
+        </div>
+        <div class="form-group">
+          <label class="formGroupExampleInput startDate">Date de fin :</label>
+          <input type="date" class="form-control" [(ngModel)]="mission.endDate" name="endDate" #endDate="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Ville de départ :</label>
+          <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.departureCity"
+            name="depart" #name="ngModel" required>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Ville d'arrivée :</label>
+          <input type="text" class="form-control" placeholder="Entrez une ville" [(ngModel)]="mission.arrivalCity"
+            name="arrival" #name="ngModel" required>
+        </div>
+        <div class="form-group">
+          <label>Tranport :</label><select class="form-control" [(ngModel)]="mission.transportEnum" name="transport" required
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let t of transport" [ngValue]="t.toUpperCase()">{{t}}</option>
+          </select>
+        </div>
+        <div class="form-group center-boutons-formulaire">
+          <button class="btn btn-primary bouton-formulaire" type="submit()" [disabled]="!monForm.valid">Valider</button>
+          <button class="btn btn-danger bouton-formulaire" (click)="cancel()">Annuler</button>
+        </div>
+      </form>
+    </div>
+    </div>
+

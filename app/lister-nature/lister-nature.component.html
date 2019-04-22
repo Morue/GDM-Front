@@ -1,0 +1,43 @@
+<h2>Liste des natures</h2>
+<button type="button" class="btn btn-success" (click)=newKind()>Créer une nature</button>
+<p>
+  <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+</p>
+
+<table class="table table-striped ">
+  <thead>
+    <tr class="text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">Nom</th>
+      <th class="align-middle" scope="col">Taux moyen journalier </th>
+      <th class="align-middle" scope="col">% Bonus</th>
+      <th class="align-middle" scope="col">Date de creation</th>
+      <th class="align-middle" scope="col">Facturable</th>
+      <th class="align-middle" scope="col">Bonus</th>
+      <th class="align-middle" scope="col">Plafond frais journalier</th>
+      <th class="align-middle" scope="col">Autorisation de dépassement</th>
+      <th class="align-middle" scope="col">Activée?</th>
+      <th class="align-middle" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center" *ngFor="let kind of listeKinds; index as i">
+      <th class="align-middle" scope="row">{{ i + 1 }}</th>
+      <td class="align-middle">{{ kind.name }}</td>
+      <td class="align-middle">{{ kind.adr }}</td>
+      <td class="align-middle">{{ kind.bonusPercentage }}</td>
+      <td class="align-middle">{{ kind.updatedAt }}</td>
+      <td class="align-middle">{{ kind.invoiced }}</td>
+      <td class="align-middle">{{ kind.bonus }}</td>
+      <td class="align-middle">{{ kind.dailyCharges }}</td>
+      <td class="align-middle">{{ kind.authorizationToExceed }}</td>
+      <td class="align-middle">{{ kind.active }}</td>
+      <td class="align-middle">
+        <button type="button" class="btn-liste btn btn-info btn-sm" (click)="goToHistoric(kind)">Historique</button>
+        <button type="button" class="btn-liste btn btn-modifier btn-sm" (click)="openUpdate(kind)">Modifier</button>
+        <button type="button" class="btn-liste btn btn-danger btn-sm" (click)="openDelete(kind)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
